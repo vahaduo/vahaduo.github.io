@@ -1,110 +1,223 @@
 <!DOCTYPE html>
-<html>
 <!-- 
 https://github.com/vahaduo/
 -->
+<html data-theme="black">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vahaduo tools for admixture and PCA analysis based on high-dimensional input data. Run models, create interactive 2D and 3D plots and explore genetic ancient (aDNA - ancient DNA) and modern human diversity.">
+  <meta name="description" content="Vahaduo - A collection of tools for admixture and PCA analysis based on multivariate input data. Run models, create interactive 2D and 3D graphs, and explore the genetic diversity of ancient and modern human populations.">
   <title>Vahaduo App Gallery</title>
-  <style type="text/css">
-    html, body {
-      height: 100%;
-      margin: 0px;
-      font-size: calc(0.5vw + 12px);
-      font-family: "Open Sans", sans-serif;
-      color: #d8d8d8;
-      overflow: hidden;
-      background-color: #1c1c1c;
+  <script>if(!sessionStorage.getItem("_swaAG")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:"https://www.AppGallery.com",screen:screen.width+"x"+screen.height,user:"TheCount",utcoffset:"1"}))};sessionStorage.setItem("_swaAG","1");</script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.2/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+  <style>
+    * {
+      scrollbar-width: auto;
+      scrollbar-color: #83b600 black;
     }
-    .flex-container {
-      display: flex;
-      min-height: calc(100vh - 2rem);
-      height: calc(100vh - 2rem);
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      overflow-y: auto;
+    textarea {
+      cursor: auto;
+      scrollbar-width: auto;
     }
-    nav {
-      height: 2rem;
-      width: 100vw;
-      display: flex;
-      margin: 0;
-      box-shadow: 1px 1px 5px #131313;
-      align-items: center;
-      justify-content: center;
-      text-transform: uppercase;
-      font-size: 0.8rem;
+    *::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
     }
-    a {
-      color: inherit;
-      text-decoration: inherit;
+    textarea::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
     }
-    .flex-container > div {
-      width: 100%;
-      max-width: 800px;
-      margin-left: 1rem;
-      margin-right: 1rem;
+    *::-webkit-scrollbar-track {
+      background: black;
     }
-    .flex-container > div > div {
-      width: 100%;
-      box-shadow: 1px 1px 5px #131313;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
+    *::-webkit-scrollbar-thumb {
+      background-color: #83b600;
     }
-    img {
-      display: block;
-      width: 100%;
-      max-width: 800px;
-      height: auto;
+    *::-webkit-scrollbar-corner {
+      background: black;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="https://vahaduo.github.io" title="Vahaduo App Gallery">
-      <div>
-        Vahaduo&nbsp;App&nbsp;Gallery
+  <div class="navbar bg-base-100 sticky top-0 filter drop-shadow-lg h-24 sm:h-16 z-10">
+    <div class="navbar-start">
+      <a class="btn btn-ghost normal-case text-xl" href="https://vahaduo.github.io" target="_blank">
+        <div class="avatar mx-2 sm:ml-0">
+          <div class="w-8 text-center" style="background-color: #676767ff">
+            <svg width="2rem" height="2rem" viewBox="0 0 96 96" fill="#e4e4e4" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="m 16.844877,17.916381 h 15.372869 l 15.730378,43.77494 15.690655,-43.77494 H 79.011648 L 57.044732,77.223083 H 38.811794 Z"></path></svg>
+          </div>
+        </div>
+        Vahaduo
+      </a>
+    </div>
+    <div class="navbar-center"></div>
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost normal-case">Quick access</label>
+        <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 w-56 max-h-screen overflow-y-auto">
+          <li><a href="https://vahaduo.github.io/vahaduo/" title="Vahaduo: Admixture JS" class="py-2"><img src="img/VahaduoAdmixtureJSscreenshot.png" alt="Vahaduo: Admixture JS" class="w-11">Admixture JS</a></li>
+          <li><a href="https://vahaduo.github.io/custompca/" title="Vahaduo: Custom PCA" class="py-2"><img src="img/VahaduoCustomPCAscreenshot.png" alt="Vahaduo: Custom PCA" class="w-11">Custom PCA</a></li>
+          <li><a href="https://vahaduo.github.io/g25views/" title="Vahaduo: Global 25 Views" class="py-2"><img src="img/VahaduoGlobal25ViewsScreenshot.png" alt="Vahaduo: Global 25 Views" class="w-11">Global 25 Views</a></li>
+          <li><a href="https://vahaduo.github.io/3d/" title="Vahaduo: 3D PCA Viewer" class="py-2"><img src="img/Vahaduo3DPCAViewerScreenshot.png" alt="Vahaduo: 3D PCA Viewer" class="w-11">3D PCA Viewer</a></li>
+          <li><a href="https://vahaduo.github.io/g25download/" title="Vahaduo: G25 Download" class="py-2"><img src="img/VahaduoG25DownloadScreenshot.png" alt="Vahaduo: G25 Download" class="w-11">G25 Download</a></li>
+          <li><a href="https://vahaduo.github.io/g25views/cvg/" title="Vahaduo: Celto-Germanic PCA Views" class="py-2"><img src="img/VahaduoCeltoGermanicPCAViewsScreenshot.png" alt="Vahaduo: Celto-Germanic PCA Views" class="w-11">Celto-Germanic PCA Views</a></li>
+        </ul>
       </div>
-    </a>
-  </nav>
-  <div class="flex-container">
-  	<div><div>
-  	  <a href="https://www.patreon.com/vahaduo" title="Check for updates and support Vahaduo on Patreon!">
-  	    <img src="img/VahaduoPatreonScreenshot.png" alt="Check for updates and support Vahaduo on Patreon!" width="800" height="400">
-  	  </a>
-  	</div></div>
-    <div><div>
-      <a href="https://vahaduo.github.io/g25download/" title="Vahaduo: G25 Download">
-        <img src="img/VahaduoG25DownloadScreenshot.png" alt="Vahaduo: 3D PCA Viewer" width="800" height="550">
-      </a>
-    </div></div>
-    <div><div>
-      <a href="https://vahaduo.github.io/3d/" title="Vahaduo: 3D PCA Viewer">
-        <img src="img/Vahaduo3DPCAViewerScreenshot.png" alt="Vahaduo: 3D PCA Viewer" width="800" height="550">
-      </a>
-    </div></div>
-    <div><div>
-      <a href="https://vahaduo.github.io/vahaduo/" title="Vahaduo: Admixture JS">
-        <img src="img/VahaduoAdmixtureJSscreenshot.png" alt="Vahaduo: Admixture JS" width="800" height="550">
-      </a>
-    </div></div>
-    <div><div>
-      <a href="https://vahaduo.github.io/custompca/" title="Vahaduo: Custom PCA">
-        <img src="img/VahaduoCustomPCAscreenshot.png" alt="Vahaduo: Custom PCA" width="800" height="550">
-      </a>
-    </div></div>
-    <div><div>
-      <a href="https://vahaduo.github.io/g25views/" title="Vahaduo: Global 25 Views">
-        <img src="img/VahaduoGlobal25ViewsScreenshot.png" alt="Vahaduo: Global 25 Views" width="800" height="550">
-      </a>
-    </div></div>
-    <div><div>
-      <a href="https://vahaduo.github.io/g25views/cvg/" title="Vahaduo: Celto-Germanic PCA Views">
-        <img src="img/VahaduoCeltoGermanicPCAViewsScreenshot.png" alt="Vahaduo: Celto-Germanic PCA Views" width="800" height="550">
-      </a>
-    </div></div>
+      <div class="tooltip tooltip-left mr-2" data-tip="Check for updates and support Vahaduo on Patreon">
+        <a class="btn btn-square btn-ghost" style="background-color: #141518" href="https://www.patreon.com/vahaduo" target="_blank">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 96 96" fill="#FF424D" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M -5.76128e-7,2.2693713 H 16.811241 V 94.070099 H -5.76128e-7 Z"></path><path fill-rule="evenodd" d="M 95.999996,36.68187 A 34.751972,34.751972 0 0 1 61.248024,71.433842 34.751972,34.751972 0 0 1 26.496052,36.68187 34.751972,34.751972 0 0 1 61.248024,1.9298973 34.751972,34.751972 0 0 1 95.999996,36.68187 Z"></path></svg>
+        </a>
+      </div>
+    </div>
   </div>
+  <div class="hero bg-gradient-to-br from-success to-warning -mt-24 sm:-mt-16 min-h-screen">
+    <div class="hero-content text-center mt-24 mb-32">
+      <div class="max-w-lg text-base-200">
+        <h1 class="text-5xl font-bold filter drop-shadow-lg">Vahaduo App Gallery</h1>
+        <p class="py-6">A collection of tools for admixture and PCA analysis based on multivariate input data. Run models, create interactive 2D and 3D graphs, and explore the genetic diversity of ancient and modern human populations.</p>
+        <div class="tooltip tooltip-bottom" data-tip="Support Vahaduo on Patreon!">
+          <a href="https://www.patreon.com/bePatron?u=62150705" class="btn uppercase border-0 shadow-md" style="background-color:#FF424D; color:#FFFFFF"><svg width="1.5em" height="1.5em" viewBox="0 0 96 96" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M -5.76128e-7,2.2693713 H 16.811241 V 94.070099 H -5.76128e-7 Z"></path><path fill-rule="evenodd" d="M 95.999996,36.68187 A 34.751972,34.751972 0 0 1 61.248024,71.433842 34.751972,34.751972 0 0 1 26.496052,36.68187 34.751972,34.751972 0 0 1 61.248024,1.9298973 34.751972,34.751972 0 0 1 95.999996,36.68187 Z"></path></svg><span class="ml-4">Become a Patron</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sm:container mx-auto -mt-32 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 justify-items-stretch">
+    <div class="card bg-base-300 shadow-xl">
+      <figure><img src="img/VahaduoAdmixtureJSscreenshot.png" alt="Vahaduo: Admixture JS"></figure>
+      <div class="card-body">
+        <h2 class="card-title">Admixture JS</h2>
+        <p>Rapid estimation of admixture proportions and calculation of Euclidean distances.</p>
+        <div class="card-actions justify-end">
+          <a href="https://vahaduo.github.io/vahaduo/" title="Vahaduo: Admixture JS" class="btn btn-primary normal-case">Open</a>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-base-300 shadow-xl">
+      <figure><img src="img/VahaduoCustomPCAscreenshot.png" alt="Vahaduo: Custom PCA"></figure>
+      <div class="card-body">
+        <h2 class="card-title">Custom PCA</h2>
+        <p>Run PCA analysis, project samples onto predefined space and create interactive PCA plots.</p>
+        <div class="card-actions justify-end">
+          <a href="https://vahaduo.github.io/custompca/" title="Vahaduo: Custom PCA" class="btn btn-primary normal-case">Open</a>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-base-300 shadow-xl">
+      <figure><img src="img/VahaduoGlobal25ViewsScreenshot.png" alt="Vahaduo: Global 25 Views"></figure>
+      <div class="card-body">
+        <h2 class="card-title">Global 25 Views</h2>
+        <p>Two-dimensional visualization of modern and ancient human genetic variation. Project samples onto predefined regional PCAs based on Eurogenes Global 25 PCA.</p>
+        <div class="card-actions justify-end">
+          <div class="btn-group">
+            <a href="https://vahaduo.github.io/g25views/" title="Vahaduo: Global 25 Views" class="btn btn-primary normal-case">Open</a>
+            <div class="dropdown dropdown-top dropdown-end">
+              <label tabindex="0" class="btn btn-primary btn-square">&#8942;</label>
+              <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 w-52 max-h-60 overflow-y-auto">
+                <li><a href="https://vahaduo.github.io/g25views/#NorthEurope" title="Vahaduo: Global 25 Views - North Europe">North Europe</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#NorthwestEurope" title="Vahaduo: Global 25 Views - Northwest Europe">Northwest Europe</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#Europe1" title="Vahaduo: Global 25 Views - Europe 1">Europe 1</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#Europe2" title="Vahaduo: Global 25 Views - Europe 2">Europe 2</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#WestEurasia" title="Vahaduo: Global 25 Views - West Eurasia">West Eurasia</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#NorthEurasia1" title="Vahaduo: Global 25 Views - North Eurasia 1">North Eurasia 1</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#NorthEurasia2" title="Vahaduo: Global 25 Views - North Eurasia 2">North Eurasia 2</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#NorthEurasia3" title="Vahaduo: Global 25 Views - North Eurasia 3">North Eurasia 3</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#Caucasus-NearEast" title="Vahaduo: Global 25 Views - Caucasus - Near East">Caucasus - Near East</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#SouthAsia" title="Vahaduo: Global 25 Views - South Asia">South Asia</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#EastAsia1" title="Vahaduo: Global 25 Views - East Asia 1">East Asia 1</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#EastAsia2" title="Vahaduo: Global 25 Views - East Asia 2">East Asia 2</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#Africa1" title="Vahaduo: Global 25 Views - Africa 1">Africa 1</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#Africa2" title="Vahaduo: Global 25 Views - Africa 2">Africa 2</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#Africa3" title="Vahaduo: Global 25 Views - Africa 3">Africa 3</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/#Custom" title="Vahaduo: Global 25 Views - Custom">Custom</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-base-300 shadow-xl">
+      <figure><img src="img/Vahaduo3DPCAViewerScreenshot.png" alt="Vahaduo: 3D PCA Viewer"></figure>
+      <div class="card-body">
+        <h2 class="card-title">3D PCA Viewer</h2>
+        <p>Three-dimensional visualization of global modern and ancient human genetic variation.</p>
+        <div class="card-actions justify-end">
+          <div class="btn-group">
+            <a href="https://vahaduo.github.io/3d/" title="Vahaduo: 3D PCA Viewer" class="btn btn-primary normal-case">Open</a>
+            <div class="dropdown dropdown-top dropdown-end">
+              <label tabindex="0" class="btn btn-primary btn-square">&#8942;</label>
+              <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 w-60 max-h-60 overflow-y-auto">
+                  <li class="border-l-2 my-1" style="border-color: #0061d6"><a href="https://vahaduo.github.io/3d/we/" title="Vahaduo: Eurogenes West Eurasia PCA 3D Viewer">West Eurasia PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #fed725"><a href="https://vahaduo.github.io/3d/g25/" title="Vahaduo: Eurogenes Global 25 PCA 3D Viewer">Global 25 PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/westeurasia/" title="Vahaduo: Eurogenes Global 25 PCA West Eurasia 3D Viewer">G25 West Eurasia PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/europe/" title="Vahaduo: Eurogenes Global 25 PCA Europe 3D Viewer">G25 Europe PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/northeurope/" title="Vahaduo: Eurogenes Global 25 PCA North Europe 3D Viewer">G25 North Europe PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/northeurasia/" title="Vahaduo: Eurogenes Global 25 PCA North Eurasia 3D Viewer">G25 North Eurasia PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/eastasia/" title="Vahaduo: Eurogenes Global 25 PCA East Asia 3D Viewer">G25 East Asia PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/southasia/" title="Vahaduo: Eurogenes Global 25 PCA South Asia 3D Viewer">G25 South Asia PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/caucasusneareast/" title="Vahaduo: Eurogenes Global 25 PCA Caucasus - Near East 3D Viewer">G25 Caucasus - Near East PCA</a></li>
+                  <li class="border-l-2 my-1" style="border-color: #ff8f00"><a href="https://vahaduo.github.io/3d/g25/africa/" title="Vahaduo: Eurogenes Global 25 PCA Africa 3D Viewer">G25 Africa PCA</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-base-300 shadow-xl">
+      <figure><img src="img/VahaduoG25DownloadScreenshot.png" alt="Vahaduo: G25 Download"></figure>
+      <div class="card-body">
+        <h2 class="card-title">G25 Download</h2>
+        <p>Fast and easy download of always up-to-date Eurogenes Global 25 PCA spreadsheets (G25 coordinates) with just a single click.</p>
+        <div class="card-actions justify-end">
+          <a href="https://vahaduo.github.io/g25download/" title="Vahaduo: G25 Download" class="btn btn-primary normal-case">Open</a>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-base-300 shadow-xl">
+      <figure><img src="img/VahaduoCeltoGermanicPCAViewsScreenshot.png" alt="Vahaduo: Celto-Germanic PCA Views"></figure>
+      <div class="card-body">
+        <h2 class="card-title">Celto-Germanic PCA Views</h2>
+        <p>Two-dimensional visualization of modern and ancient human genetic variation. Project samples onto Eurogenes Celto-Germanic PCA.</p>
+        <div class="card-actions justify-end">
+          <div class="btn-group">
+            <a href="https://vahaduo.github.io/g25views/cvg/" title="Vahaduo: Celto-Germanic PCA Views" class="btn btn-primary normal-case">Open</a>
+            <div class="dropdown dropdown-top dropdown-end">
+              <label tabindex="0" class="btn btn-primary btn-square">&#8942;</label>
+              <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 w-52 max-h-60 overflow-y-auto">
+                <li><a href="https://vahaduo.github.io/g25views/cvg/#Core" title="Vahaduo: Eurogenes Celto-Germanic PCA Views - Core">Core</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/cvg/#Full" title="Vahaduo: Eurogenes Celto-Germanic PCA Views - Full">Full</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/cvg/#West-East" title="Vahaduo: Eurogenes Celto-Germanic PCA Views - West-East">West-East</a></li>
+                <li><a href="https://vahaduo.github.io/g25views/cvg/#Custom" title="Vahaduo: Eurogenes Celto-Germanic PCA Views - Custom">Custom</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer items-center p-4 mt-4 bg-base-300 text-neutral-content grid-flow-col-dense sm:grid-flow-col">
+    <div class="items-center grid-flow-col">
+      <div class="avatar mx-2">
+        <div class="w-12 text-center" style="background-color: #676767ff">
+          <svg width="3rem" height="3rem" viewBox="0 0 96 96" fill="#e4e4e4" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="m 16.844877,17.916381 h 15.372869 l 15.730378,43.77494 15.690655,-43.77494 H 79.011648 L 57.044732,77.223083 H 38.811794 Z"></path></svg>
+        </div>
+      </div> 
+      <p>Copyright © 2019-2022 - All right reserved</p>
+    </div> 
+    <div class="grid-flow-col gap-4 place-self-center justify-self-end grid-rows-2 sm:grid-rows-1">
+      <a href="https://github.com/vahaduo/" title="Vahaduo on Github"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="fill-current" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a href="https://www.reddit.com/r/vahaduo/" title="Vahaduo on Reddit"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="fill-current" viewBox="0 0 16 16">
+      <path d="M6.167 8a.831.831 0 0 0-.83.83c0 .459.372.84.83.831a.831.831 0 0 0 0-1.661zm1.843 3.647c.315 0 1.403-.038 1.976-.611a.232.232 0 0 0 0-.306.213.213 0 0 0-.306 0c-.353.363-1.126.487-1.67.487-.545 0-1.308-.124-1.671-.487a.213.213 0 0 0-.306 0 .213.213 0 0 0 0 .306c.564.563 1.652.61 1.977.61zm.992-2.807c0 .458.373.83.831.83.458 0 .83-.381.83-.83a.831.831 0 0 0-1.66 0z"/>
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.828-1.165c-.315 0-.602.124-.812.325-.801-.573-1.9-.945-3.121-.993l.534-2.501 1.738.372a.83.83 0 1 0 .83-.869.83.83 0 0 0-.744.468l-1.938-.41a.203.203 0 0 0-.153.028.186.186 0 0 0-.086.134l-.592 2.788c-1.24.038-2.358.41-3.17.992-.21-.2-.496-.324-.81-.324a1.163 1.163 0 0 0-.478 2.224c-.02.115-.029.23-.029.353 0 1.795 2.091 3.256 4.669 3.256 2.577 0 4.668-1.451 4.668-3.256 0-.114-.01-.238-.029-.353.401-.181.688-.592.688-1.069 0-.65-.525-1.165-1.165-1.165z"/></svg>
+      </a>
+      <a href="https://twitter.com/vahaduo_tools" title="Vahaduo on Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="fill-current" viewBox="0 0 16 16">
+      <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>
+      </a>
+      <a href="https://www.patreon.com/vahaduo" title="Vahaduo on Patreon"><svg width="1.5rem" height="1.5rem" viewBox="0 0 96 96"  fill="currentColor" class="fill-current" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M -5.76128e-7,2.2693713 H 16.811241 V 94.070099 H -5.76128e-7 Z"></path><path fill-rule="evenodd" d="M 95.999996,36.68187 A 34.751972,34.751972 0 0 1 61.248024,71.433842 34.751972,34.751972 0 0 1 26.496052,36.68187 34.751972,34.751972 0 0 1 61.248024,1.9298973 34.751972,34.751972 0 0 1 95.999996,36.68187 Z"></path></svg>
+      </a>
+    </div>
+  </footer>
 </body>
+</html>
