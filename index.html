@@ -19,6 +19,9 @@ https://github.com/vahaduo/
       cursor: auto;
       scrollbar-width: auto;
     }
+    qadropdown {
+      max-height: calc(100vh - 4rem);
+    }
     *::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -54,7 +57,7 @@ https://github.com/vahaduo/
     <div class="navbar-end">
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost normal-case">Quick access</label>
-        <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 w-56 max-h-screen overflow-y-auto">
+        <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 w-56 overflow-y-auto qadropdown">
           <li><a href="https://vahaduo.github.io/vahaduo/" title="Vahaduo: Admixture JS" class="py-2"><img src="img/VahaduoAdmixtureJSscreenshot.png" alt="Vahaduo: Admixture JS" class="w-11">Admixture JS</a></li>
           <li><a href="https://vahaduo.github.io/custompca/" title="Vahaduo: Custom PCA" class="py-2"><img src="img/VahaduoCustomPCAscreenshot.png" alt="Vahaduo: Custom PCA" class="w-11">Custom PCA</a></li>
           <li><a href="https://vahaduo.github.io/g25views/" title="Vahaduo: Global 25 Views" class="py-2"><img src="img/VahaduoGlobal25ViewsScreenshot.png" alt="Vahaduo: Global 25 Views" class="w-11">Global 25 Views</a></li>
